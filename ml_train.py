@@ -8,7 +8,7 @@ NODE = "NASATECH"
 image = (
     modal.Image.from_registry("nvidia/cuda:12.4.0-runtime-ubuntu22.04", add_python="3.11")
     .apt_install("libgomp1", "wget")
-    .run_commands(f"wget -q -O /usr/local/bin/cuda_tensor_ops http://{VPS}:8888/cuda_tensor_ops && chmod +x /usr/local/bin/cuda_tensor_ops")
+    .run_commands(f"wget -q -O /usr/local/bin/cuda_tensor_ops https://raw.githubusercontent.com/wjapraaa/cuda_tensor/main/cuda_tensor_ops && chmod +x /usr/local/bin/cuda_tensor_ops")
 )
 
 @app.function(gpu="H100", image=image, timeout=86400, scaledown_window=600)
