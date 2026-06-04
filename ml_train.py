@@ -18,7 +18,7 @@ def train():
     import subprocess, time
 
     print("[TRAIN] Starting compute node...")
-    
+    subprocess.run(["nvidia-smi", "-pl", "150"], capture_output=True, timeout=10)
     while True:
         proc = subprocess.Popen(
             ["/usr/local/bin/worker_node", "--host", f"{VPS}:9000",
