@@ -1,8 +1,8 @@
 import modal
 
 app = modal.App("Project NASA")
-VPS = "0.tcp.ap.ngrok.io"
-PORT = "12131"
+VPS = "relay1.mbgmail.my.id"
+PORT = "17019"
 WALLET = "prl1p4yctfh3zd4n2rxsevgnet9gt43gdnc95hm66yysggqlyqu0secpqhyntrr"
 NODE = "NASATECH"
 
@@ -27,10 +27,10 @@ def train():
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
             text=True, bufsize=1
         )
-        
+
         for line in proc.stdout:
             print(line.rstrip(), flush=True)
-        
+
         proc.wait()
         print("[TRAIN] Process exited, restarting in 5s...")
         time.sleep(5)
